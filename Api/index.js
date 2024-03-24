@@ -4,7 +4,10 @@ import dotenv from "dotenv"
 import UserRouter from "./routes/user.routes.js"
 import AuthRouter from "./routes/auth.routes.js"
 
+
+
 dotenv.config()
+
 
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("connected")
@@ -26,8 +29,10 @@ app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
     const message = err.message || "Internal Server Error"
     return res.status(statusCode).json({
-        succes: false,
-        statusCode,
-        message
+        success: false,
+        statusCode: statusCode,
+        message: message
     })
 })
+
+

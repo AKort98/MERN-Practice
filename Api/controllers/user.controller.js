@@ -1,3 +1,5 @@
 export const test = (req, res) => {
-    res.send("Test Controller")
+    res.send({
+        message: "test controller"
+    })
 }
