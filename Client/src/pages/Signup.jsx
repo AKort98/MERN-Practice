@@ -29,7 +29,7 @@ export default function Signup() {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
-      console.log(data);
+
       if (data.success === false) {
         seterror(data);
         setLoading(false);
