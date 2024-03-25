@@ -76,7 +76,7 @@ export default function Profile() {
       const data = await res.json();
       if (data.success === false) {
         dispatch(updateUserFailure(data.message));
-        setUpdateFailed(true);
+        setUpdateSuccess(false);
         return;
       }
 
@@ -84,6 +84,7 @@ export default function Profile() {
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+      setUpdateSuccess(false);
     }
   };
 
