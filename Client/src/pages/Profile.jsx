@@ -82,6 +82,7 @@ export default function Profile() {
           placeholder="username"
           className="border p-2 rounded-lg shadow-md"
           id="username"
+          value={currentUser.username}
         />
         <input
           type="text"
