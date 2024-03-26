@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   getStorage,
   uploadBytesResumable,
@@ -182,6 +183,12 @@ export default function Profile() {
         >
           {loading ? "loading..." : "Update"}
         </button>
+        <Link
+          to={"/create-listing"}
+          className="bg-green-500 p-3 rounded-lg text-white uppercase text-center hover:bg-white hover:text-green-500 hover:border-green-500 transition-all duration-200 cursor-pointer hover:border"
+        >
+          Create Listing
+        </Link>
       </form>
       <div className="flex items-center justify-between mt-5">
         <span
