@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +13,9 @@ import {
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
 } from "../redux/user/userSlice";
 
 export default function Profile() {
@@ -24,13 +26,11 @@ export default function Profile() {
   const [fileError, setFileError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSucces, setUpdateSuccess] = useState(false);
-  const [updateFailed, setUpdateFailed] = useState(false);
   const dispatch = useDispatch();
 
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime + file.name;
-    //console.log(fileName);
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -85,6 +85,24 @@ export default function Profile() {
     } catch (error) {
       dispatch(updateUserFailure(error.message));
       setUpdateSuccess(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      } else {
+        dispatch(deleteUserSuccess(data));
+      }
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
     }
   };
 
@@ -147,8 +165,11 @@ export default function Profile() {
         </button>
       </form>
       <div className="flex items-center justify-between mt-5">
-        <span className="text-red-600 hover:text-red-700 cursor-pointer">
-          Delete Account ?
+        <span
+          className="text-red-600 hover:text-red-700 cursor-pointer"
+          onClick={handleDelete}
+        >
+          Delete Account?
         </span>
         <span className="text-red-600 hover:text-red-700 cursor-pointer">
           Logout
