@@ -76,10 +76,12 @@ export default function () {
         (error) => {
           reject(error);
           setImageUploadErrors(error);
+          setLoading(false);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
+            setLoading(false);
           });
         }
       );
