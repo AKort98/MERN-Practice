@@ -298,9 +298,11 @@ export default function Profile() {
                 >
                   {deleteListingsLoading ? "deleting" : "Delete"}
                 </button>
-                <button className="bg-blue-700 p-1 rounded-md text-gray-200 uppercase">
-                  update
-                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className="bg-blue-700 p-1 rounded-md text-gray-200 uppercase">
+                    update
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
