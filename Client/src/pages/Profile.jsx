@@ -33,6 +33,9 @@ export default function Profile() {
   const [listings, setListings] = useState([]);
   const [listingsLoading, setListingsLoading] = useState(false);
   const [listingsError, setListingsError] = useState(null);
+  const [deleteListingsLoading, setdeleteListingsLoading] = useState(false);
+  const [deleteListingsError, setdeleteListingsError] = useState(null);
+  const [deleteListingsSuccess, setdeleteListingsSuccess] = useState(null);
   const dispatch = useDispatch();
 
   const handleFileUpload = (file) => {
@@ -141,11 +144,34 @@ export default function Profile() {
         return;
       }
       setListingsLoading(false);
-      console.log(data);
       setListings(data);
     } catch (error) {
       setListingsLoading(false);
       setListingsError(error.message);
+    }
+  };
+
+  const handleDeleteListing = async (listingId) => {
+    try {
+      setdeleteListingsLoading(true);
+      setdeleteListingsError(null);
+      setdeleteListingsSuccess(null);
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        setdeleteListingsError(data.message);
+        setdeleteListingsLoading(false);
+        return;
+      }
+      setListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+      setdeleteListingsSuccess(true);
+    } catch (error) {
+      setdeleteListingsError(data.message);
+      setdeleteListingsLoading(false);
     }
   };
 
@@ -165,6 +191,9 @@ export default function Profile() {
           alt="profile"
           className="rounded-full size-20 object-cover cursor-pointer self-center mt-7"
         />
+        <p className="text-green-500 text-center uppercase font-semibold">
+          {deleteListingsSuccess ? "Listing deleted Successfully" : ""}{" "}
+        </p>
         <p className="text-sm text-center">
           {fileError ? (
             <span className="text-red-500">Error in upload</span>
@@ -263,8 +292,11 @@ export default function Profile() {
                 <p>{listing.name}</p>
               </Link>
               <div className="flex flex-col gap-1">
-                <button className="bg-red-600 p-1 rounded-md text-gray-200 uppercase">
-                  Delete
+                <button
+                  onClick={() => handleDeleteListing(`${listing._id}`)}
+                  className="bg-red-600 p-1 rounded-md text-gray-200 uppercase"
+                >
+                  {deleteListingsLoading ? "deleting" : "Delete"}
                 </button>
                 <button className="bg-blue-700 p-1 rounded-md text-gray-200 uppercase">
                   update
