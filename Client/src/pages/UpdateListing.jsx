@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { app } from "../firebase.js";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function () {
   const [files, setFiles] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
@@ -32,6 +33,7 @@ export default function () {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const listingid = useParams();
+  const na = useNavigate();
   console.log(listingid.id);
 
   useEffect(() => {
@@ -157,6 +159,7 @@ export default function () {
       });
       const data = await res.json();
       setLoading(false);
+      na(`/Listing/${listingid.id}`);
       if (data.success === false) {
         setError(data.message);
       }
