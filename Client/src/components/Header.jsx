@@ -6,17 +6,17 @@ import { useSelector } from "react-redux";
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <header className="bg-slate-200 shadow-md">
+    <header className="bg-transparent shadow-md">
       <div className="flex items-center justify-between max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">Zillow</span>
-            <span className="text-green-600">Clone</span>
+            <span className="text-gray-200">Property</span>
+            <span className="text-green-800">Quest</span>
           </h1>
         </Link>
         <form
           action=""
-          className="bg-slate-100 p-2 rounded-md flex items-center"
+          className="bg-gray-800 p-2 rounded-md flex items-center text-gray-300"
         >
           <input
             type="text"
@@ -29,12 +29,12 @@ export default function Header() {
         </form>
         <ul className="flex gap-4 items-center">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline cursor-pointer">
+            <li className="hidden sm:inline text-gray-200 hover:underline cursor-pointer">
               Home
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline cursor-pointer">
+            <li className="hidden sm:inline text-gray-200 hover:underline cursor-pointer">
               About
             </li>
           </Link>
