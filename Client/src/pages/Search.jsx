@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import ReactLoading from "react-loading";
+import ListingCard from "../components/ListingCard";
+
 export default function Search() {
   const [searchparams, setsearchparams] = useState({
     searchTerm: "",
@@ -13,8 +16,9 @@ export default function Search() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [listings, setListings] = useState();
+  const [listings, setListings] = useState([]);
   const navigate = useNavigate();
+  console.log(listings);
 
   const handleChange = (e) => {
     if (
@@ -95,20 +99,27 @@ export default function Search() {
         order: orderFromUrl || "desc",
       });
     }
-    const fetchData = async () => {
-      const searchQuery = urlParams.toString();
-      console.log(searchQuery);
+    const fetchListings = async () => {
       setLoading(true);
       setError(false);
+      const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
-      console.log(data);
+
+      if (data.success === false) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+      setListings(data);
+      setLoading(false);
     };
-    fetchData();
+
+    fetchListings();
   }, [location.search]);
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="border-b-2 p-7 md:border-r-2 md:min-h-screen">
+      <div className="border-b-2 p-7 md:border-r-2 md:min-h-screen ">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="text-gray-300 flex items-center gap-2">
             <label>Search</label>
@@ -216,8 +227,29 @@ export default function Search() {
           </button>
         </form>
       </div>
-      <div className="text-white p-7">
-        <h1 className="text-3xl font-semibold text-center">Search Results</h1>
+      <div className="text-white p-7 flex-1 flex flex-col gap-4">
+        <h1 className="text-3xl font-semibold text-center md:text-center">
+          Search Results
+        </h1>
+        <div className="flex flex-wrap gap-4 justify-center">
+          {!loading && listings.length === 0 && (
+            <p className="text-2xl text-center text-gray-300 mx-auto">
+              No Listings found
+            </p>
+          )}
+          {loading && (
+            <ReactLoading
+              type="spin"
+              color="green"
+              className="text-center mt-5 mx-auto"
+            />
+          )}
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingCard key={listing._id} listing={listing} />
+            ))}
+        </div>
       </div>
     </div>
   );

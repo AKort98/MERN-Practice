@@ -70,7 +70,7 @@ export default function Header() {
                 className="rounded-full size-9 object-cover"
               />
             ) : (
-              <li className="sm:inline text-slate-700 hover:underline cursor-pointer">
+              <li className="sm:inline text-gray-200 hover:underline cursor-pointer">
                 Sign in
               </li>
             )}

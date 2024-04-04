@@ -46,14 +46,16 @@ export default function Signup() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h3 className="text-4xl my-7 text-center font-semibold">Signup</h3>
+      <h3 className="text-4xl my-7 text-center font-semibold text-gray-200">
+        Signup
+      </h3>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="username"
           id="username"
-          className="border p-2 rounded-lg"
+          className="border p-2 rounded-lg bg-transparent text-gray-300 focus:outline-none"
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -61,7 +63,7 @@ export default function Signup() {
           type="text"
           name="email"
           id="email"
-          className="border p-2 rounded-lg"
+          className="border p-2 rounded-lg bg-transparent text-gray-300 focus:outline-none"
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -69,20 +71,20 @@ export default function Signup() {
           type="password"
           name="password"
           id="password"
-          className="border p-2 rounded-lg"
+          className="border p-2 rounded-lg bg-transparent text-gray-300 focus:outline-none"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
           disabled={loading}
-          className="bg-green-500 p-2 rounded-lg text-white uppercase hover:opacity-90 disabled:opacity-70"
+          className="bg-green-800 p-3 rounded-lg text-green-200 uppercase hover:opacity-90 disabled:opacity-70"
         >
           {loading ? "loading...." : "Sign up"}
         </button>
         <OAuth />
       </form>
       <div className="flex gap-1 mt-4">
-        <p>Have an account? </p>
+        <p className="text-gray-400">Have an account? </p>
         <Link to="/sign-in">
           <span className="text-blue-600">Sign in</span>
         </Link>

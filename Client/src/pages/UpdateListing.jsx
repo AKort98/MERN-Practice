@@ -181,19 +181,19 @@ export default function () {
             name=""
             id="name"
             placeholder="Name"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             maxLength="62"
             minLength="10"
             required
             onChange={handleChange}
             value={formData.name}
           />
-          <input
+          <textarea
             type="text"
             name=""
             id="description"
             placeholder="Description"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             required
             onChange={handleChange}
             value={formData.description}
@@ -203,12 +203,12 @@ export default function () {
             name=""
             id="address"
             placeholder="Address"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             required
             onChange={handleChange}
             value={formData.address}
           />
-          <div className="flex gap-3 flex-wrap w-full ">
+          <div className="flex gap-3 flex-wrap w-full text-gray-200">
             <div className="flex gap-2 align-middle">
               <input
                 type="checkbox"
@@ -274,7 +274,7 @@ export default function () {
                   onChange={handleChange}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg w-24"
                 />
-                <span>Bedrooms</span>
+                <span className=" text-gray-200">Bedrooms</span>
               </div>
               <div className="flex gap-2 items-center">
                 <input
@@ -287,7 +287,7 @@ export default function () {
                   value={formData.bathrooms}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg w-24"
                 />
-                <span>Bathrooms</span>
+                <span className=" text-gray-200">Bathrooms</span>
               </div>
             </div>
             <div className="flex-col flex gap-2">
@@ -300,8 +300,12 @@ export default function () {
                   onChange={handleChange}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24"
                 />
-                <span>Price</span>
-                <span className="font-xs">{"($/month)"}</span>
+                <span className=" text-gray-200">Price</span>
+                {formData.type === "rent" ? (
+                  <span className="font-xs text-gray-200">{"($/month)"}</span>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="flex gap-2 items-center">
                 <input
@@ -312,8 +316,12 @@ export default function () {
                   onChange={handleChange}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24"
                 />
-                <span>Discounted Price</span>
-                <span className="font-xs">{"($/month)"}</span>
+                <span className=" text-gray-200">Discounted Price</span>
+                {formData.type === "rent" ? (
+                  <span className="font-xs text-gray-200">{"($/month)"}</span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

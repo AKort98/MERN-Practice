@@ -95,8 +95,8 @@ export default function Listings() {
             <p className="text-2xl font-semibold text-gray-300 capitalize">
               {listingData.name} - ${" "}
               {listingData.offer
-                ? listingData.regularPrice.toLocaleString("en-US")
-                : listingData.discountPrice.toLocaleString("en-US")}
+                ? listingData.discountPrice.toLocaleString("en-US")
+                : listingData.regularPrice.toLocaleString("en-US")}
               {listingData.type === "rent" ? " / month" : ""}
             </p>
             <p className="flex items-center gap-2 mt-7 capitalize text-gray-300">
@@ -109,12 +109,14 @@ export default function Listings() {
               <p className="bg-red-800 w-full h-12 rounded-lg text-xl text-red-200 flex items-center justify-center">
                 {listingData.type === "rent" ? "For Rent" : "For Sale"}
               </p>
-              {listingData.discountPrice > 0 ? (
+              {listingData.offer && (
                 <p className="bg-green-800 w-full h-12 rounded-lg text-xl text-green-200 flex items-center justify-center">
-                  {"$" + listingData.discountPrice + " Discount"}
+                  {"$"
+                    .concat(
+                      listingData.regularPrice - listingData.discountPrice
+                    )
+                    .concat(" OFF")}
                 </p>
-              ) : (
-                ""
               )}
             </div>
             <p className="my-3 text-gray-400">

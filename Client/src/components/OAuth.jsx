@@ -38,7 +38,7 @@ export default function OAuth() {
   return (
     <button
       type="button"
-      className="bg-red-700 text-white p-2 rounded-lg flex items-center justify-center opacity-90 hover:opacity-100 uppercase gap-2"
+      className="bg-red-700 text-red-200 p-3 rounded-lg flex items-center justify-center opacity-90 hover:opacity-100 uppercase gap-2"
       onClick={handleGoogleAuth}
     >
       <span>

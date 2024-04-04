@@ -208,7 +208,7 @@ export default function Profile() {
         <input
           type="text"
           placeholder="username"
-          className="border p-2 rounded-lg shadow-md"
+          className="border p-2 rounded-lg shadow-md bg-transparent text-gray-300 focus:outline-none"
           id="username"
           defaultValue={currentUser.username}
           onChange={handleEdit}
@@ -216,7 +216,7 @@ export default function Profile() {
         <input
           type="text"
           placeholder="email"
-          className="border p-2 rounded-lg shadow-md"
+          className="border p-2 rounded-lg shadow-md  bg-transparent text-gray-300 focus:outline-none"
           id="email"
           defaultValue={currentUser.email}
           onChange={handleEdit}
@@ -224,20 +224,20 @@ export default function Profile() {
         <input
           type="password"
           placeholder="password"
-          className="border p-2 rounded-lg shadow-md"
+          className="border p-2 rounded-lg shadow-md  bg-transparent text-gray-300 focus:outline-none"
           id="password"
           onChange={handleEdit}
         />
         <button
           disabled={loading}
-          className="bg-blue-700 p-3 rounded-lg text-white text-xl uppercase opacity-95 hover:opacity-100
+          className="bg-blue-950 p-3 rounded-lg text-blue-200 uppercase opacity-95 hover:opacity-100
         disabled:opacity-75 "
         >
           {loading ? "loading..." : "Update"}
         </button>
         <Link
           to={"/create-listing"}
-          className="bg-green-500 p-3 rounded-lg text-white uppercase text-center hover:bg-white hover:text-green-500 hover:border-green-500 transition-all duration-200 cursor-pointer hover:border"
+          className="bg-green-800 p-3 rounded-lg text-green-200 uppercase text-center hover:opacity-90"
         >
           Create Listing
         </Link>
@@ -245,11 +245,13 @@ export default function Profile() {
 
       <button
         onClick={handleViewListings}
-        className="bg-slate-800 w-full mt-3 p-3 rounded-lg text-white uppercase text-center hover:bg-slate-500 hover:text-black  duration-200 cursor-pointer"
+        className="bg-gray-800 w-full mt-3 p-3 rounded-lg text-gray-300 uppercase text-center"
       >
         {listingsLoading ? "loading..." : "View Listings"}
       </button>
-      <div>{listingsError ? listingsError : ""}</div>
+      <div className="text-red-600 mt-2 text-xl text-center">
+        {listingsError ? listingsError : ""}
+      </div>
       <div className="flex items-center justify-between mt-5">
         <span
           className="text-red-600 hover:text-red-700 cursor-pointer"

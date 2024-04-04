@@ -41,41 +41,46 @@ export default function Signin() {
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      //dispatch(signInFailure(error.message));
+      dispatch(signInFailure(error.message));
     }
   };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h3 className="text-4xl my-7 text-center font-semibold">Sign in</h3>
+      <h3 className="text-4xl my-7 text-center font-semibold text-gray-200">
+        Sign in
+      </h3>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="email"
           id="email"
-          className="border p-2 rounded-lg"
+          className="border p-2 rounded-lg bg-transparent text-gray-300 focus:outline-none"
           placeholder="email"
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
           id="password"
-          className="border p-2 rounded-lg"
+          className="border p-2 rounded-lg bg-transparent text-gray-300 focus:outline-none"
           placeholder="password"
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
+
         <button
           disabled={loading}
-          className="bg-green-500 p-2 rounded-lg text-white uppercase hover:opacity-90 disabled:opacity-70"
+          className="bg-green-800 p-3 rounded-lg text-green-200 uppercase hover:opacity-90 disabled:opacity-70"
         >
           {loading ? "loading...." : "Sign in"}
         </button>
         <OAuth />
       </form>
       <div className="flex gap-1 mt-4">
-        <p>{"Don't "}have an account? </p>
+        <p className="text-gray-400"> {"Don't "}have an account? </p>
         <Link to="/sign-up">
           <span className="text-blue-600">Sign up</span>
         </Link>

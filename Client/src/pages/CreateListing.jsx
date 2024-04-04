@@ -166,7 +166,7 @@ export default function () {
             name=""
             id="name"
             placeholder="Name"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             maxLength="62"
             minLength="10"
             required
@@ -178,7 +178,7 @@ export default function () {
             name=""
             id="description"
             placeholder="Description"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             required
             onChange={handleChange}
             value={formData.description}
@@ -188,12 +188,12 @@ export default function () {
             name=""
             id="address"
             placeholder="Address"
-            className="border shadow-lg p-3 rounded-lg"
+            className="border shadow-lg p-3 rounded-lg bg-transparent text-gray-300 focus:outline-none"
             required
             onChange={handleChange}
             value={formData.address}
           />
-          <div className="flex gap-3 flex-wrap w-full ">
+          <div className="flex gap-3 flex-wrap w-full text-gray-200">
             <div className="flex gap-2 align-middle">
               <input
                 type="checkbox"
@@ -246,8 +246,8 @@ export default function () {
               <span>Offer</span>
             </div>
           </div>
-          <div className="flex mx-auto gap-3 flex-wrap">
-            <div className="flex-col flex gap-2">
+          <div className="flex mx-auto gap-3 flex-wrap text-gray-200">
+            <div className="flex-col flex gap-2 text-black">
               <div className="flex gap-2 items-center">
                 <input
                   type="number"
@@ -259,7 +259,7 @@ export default function () {
                   onChange={handleChange}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg w-24"
                 />
-                <span>Bedrooms</span>
+                <span className=" text-gray-200">Bedrooms</span>
               </div>
               <div className="flex gap-2 items-center">
                 <input
@@ -272,7 +272,7 @@ export default function () {
                   value={formData.bathrooms}
                   className="border border-slate-700 rounded-md text-center p-1 shadow-lg w-24"
                 />
-                <span>Bathrooms</span>
+                <span className=" text-gray-200">Bathrooms</span>
               </div>
             </div>
             <div className="flex-col flex gap-2">
@@ -283,10 +283,10 @@ export default function () {
                   required
                   value={formData.regularPrice}
                   onChange={handleChange}
-                  className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24"
+                  className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24 text-black"
                 />
-                <span>Price</span>
-                <span className="font-xs">{"($/month)"}</span>
+                <span className=" text-gray-200">Price</span>
+                <span className="font-xs text-gray-200">{"($/month)"}</span>
               </div>
               <div className="flex gap-2 items-center">
                 <input
@@ -295,9 +295,9 @@ export default function () {
                   required
                   value={formData.discountPrice}
                   onChange={handleChange}
-                  className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24"
+                  className="border border-slate-700 rounded-md text-center p-1 shadow-lg max-w-24 text-black"
                 />
-                <span>Discounted Price</span>
+                <span className=" text-gray-200">Discounted Price</span>
                 <span className="font-xs">{"($/month)"}</span>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function () {
               The first image will be the cover (max 6)
             </span>
           </p>
-          <div className="mt-3 flex justify-between py-3 border bg-slate-200 rounded-lg p-2">
+          <div className="mt-3 flex justify-between py-3 border bg-myblack rounded-lg p-2 text-gray-400">
             <input
               type="file"
               name="Images"
@@ -359,7 +359,7 @@ export default function () {
             ))}
 
           <button
-            className="bg-blue-500 p-2 rounded-lg text-white uppercase hover:opacity-100 opacity-90 mt-3"
+            className="bg-blue-950 p-2 rounded-lg text-blue-200 uppercase hover:opacity-100 opacity-90 mt-3"
             disabled={loading}
           >
             {loading ? "Loading..." : "Create new listing"}
