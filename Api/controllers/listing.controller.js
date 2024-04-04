@@ -91,7 +91,7 @@ export const getListings = async (req, res, next) => {
         }
 
         let type = req.query.type;
-        if (type === undefined || type === 'all') {
+        if (!type || type === 'all') {
             type = { $in: ['rent', 'sell'] }
         }
 
@@ -105,7 +105,7 @@ export const getListings = async (req, res, next) => {
             furnished,
             parking,
             type,
-        }).sort({ [sort]: order }).limit(limit).skip(startIndex)
+        }).sort({ [sort]: order }).limit(limit).skip(startIndex).exec();
 
         res.status(200).json(listing);
 

@@ -169,6 +169,7 @@ export default function Profile() {
         prev.filter((listing) => listing._id !== listingId)
       );
       setdeleteListingsSuccess(true);
+      setdeleteListingsLoading(false);
     } catch (error) {
       setdeleteListingsError(data.message);
       setdeleteListingsLoading(false);
